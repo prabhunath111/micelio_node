@@ -1,4 +1,5 @@
 const express = require('express');
+const userSchema = require('../modal/userSchema');
 const router = express.Router();
 const Charger = require('../modal/userSchema')
 
@@ -8,9 +9,7 @@ router.get('/', function(req, res){
       res.send({"Chargers": response})})
 });
 router.post('/createchargerpoint',function (req, res, next) {
-  console.log("line11", req.body);
     var charger = new Charger({
-      // type: req.body.location.type,
       charger_id: req.body.charger_id,
       charger_name: req.body.charger_name,
       location:{
@@ -27,7 +26,16 @@ router.post('/createchargerpoint',function (req, res, next) {
       console.log("Saved , Thanks god");
       res.send('Added data to db...');
     });
+});
+router.post('/nearcharger', function(req,resp,next){
   
+  Charger.find({location:{$near:{$geometry:{type:"Point",coordinates:req.body.location.coordinates},$maxDistance:5}}}, function(err, res){
+    if(err){
+      console.log("query error", err);
+    }else {
+      resp.send({"chargers": res});
+    }
+  })
 });
 router.put('/updatecharger', function(req, resp) {
   const obj = JSON.parse(JSON.stringify(req.body));

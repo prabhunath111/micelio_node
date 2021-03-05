@@ -20,4 +20,6 @@ const chargerSchema = mongoose.Schema({
      } 
 })
 
+chargerSchema.index({location: '2dsphere'});
+
 module.exports = mongoose.model('Charger', chargerSchema);
