@@ -7,10 +7,9 @@ router.get('/', function(req, res){
     (error)?res.send({"error": error}):
       res.send({"Chargers": response})})
 });
-router.post('/createchargerPoint',function (req, res, next) {
+router.post('/createchargerpoint',function (req, res, next) {
   // bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
     // Now we can store the password hash in db.
-    console.log("line13", req.body);
     var charger = new Charger({
       charger_id: req.body.charger_id,
       charger_name: req.body.charger_name,
