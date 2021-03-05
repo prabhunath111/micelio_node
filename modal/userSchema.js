@@ -8,12 +8,12 @@ const chargerSchema = mongoose.Schema({
         type: String,
      },
      location: {
-         lat: {
-             type: Number
+         type: {
+             type: String,
          },
-         lng: {
-             type: Number
-         }
+          coordinates: {
+              type: Array
+          }
      },
      chargerStatus: {
          type: String
