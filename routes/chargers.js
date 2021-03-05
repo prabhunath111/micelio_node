@@ -33,7 +33,8 @@ router.post('/nearcharger', function(req,resp,next){
     if(err){
       console.log("query error", err);
     }else {
-      resp.send({"chargers": res});
+      console.log("line36", res);
+      resp.send(res);
     }
   })
 });
