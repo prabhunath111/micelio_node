@@ -26,7 +26,7 @@ router.post('/createchargerpoint',function (req, res, next) {
         console.log("error aaya hai", err);
       }
       console.log("Saved , Thanks god");
-      res.send('you are so cool!!!!!');
+      res.send('Added data to db...');
     });
   
 });
