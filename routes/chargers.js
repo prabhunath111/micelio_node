@@ -8,8 +8,6 @@ router.get('/', function(req, res){
       res.send({"Chargers": response})})
 });
 router.post('/createchargerpoint',function (req, res, next) {
-  // bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-    // Now we can store the password hash in db.
     var charger = new Charger({
       charger_id: req.body.charger_id,
       charger_name: req.body.charger_name,
@@ -19,7 +17,6 @@ router.post('/createchargerpoint',function (req, res, next) {
       },
       chargerStatus: req.body.chargerStatus
     });
-    // Save the new model instance, passing a callback
     charger.save(function (err) {
       // if (err) return handleError(err);
       if (err) {
