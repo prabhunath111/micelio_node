@@ -31,53 +31,17 @@ router.post('/createchargerPoint',function (req, res, next) {
     });
   
 });
-
-/* GET users listing.*/
-/*
-router.post('/createuser', upload.single('userImage') ,function (req, res, next) {
-  console.log("file", req.file);
-  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-    // Now we can store the password hash in db.
-    var user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      password: hash,
-      userImage: req.file.path
-    });
-    // Save the new model instance, passing a callback
-    user.save(function (err) {
-      // if (err) return handleError(err);
-      if (err) {
-        console.log("error aaya hai", err);
-      }
-      console.log("Saved , Thanks god");
-      res.send('you are so cool!!!!!');
-    });
-  });
-});
-
-router.put('/updateuser', upload.single('userImage') ,function(req, res) {
+router.put('/updatecharger', function(req, resp) {
   const obj = JSON.parse(JSON.stringify(req.body));
-  if(req.file){
-    obj['userImage'] = req.file.path;
-  }
-  if(obj.password){
-    bcrypt.hash(obj.password, saltRounds, (err, hash) => {
-      // Now we can store the password hash in db.
-      console.log("line58", obj.password, hash);
-      obj['password']=hash;
-      updateUser(obj);
-    });
-  } else {updateUser(obj);}
-
-  updateUser = (obj) => {
-    User.findByIdAndUpdate(req.body._id, obj, function(err, res){
-      (err)?console.log("error", err):console.log("response", res);
-    });
-  }
-  res.send("Updated data");
+  Charger.findByIdAndUpdate(req.body._id, obj, function(err, res){
+    if(err){
+      console.log("error", err)
+      resp.send({"Updated data": err});
+    }else {
+      console.log("response", res);
+      resp.send({"Updated data": res});
+    }
+  });
  });
- */
 
 module.exports = router;
