@@ -29,7 +29,7 @@ router.post('/createchargerpoint',function (req, res, next) {
 });
 router.post('/nearcharger', function(req,resp,next){
   
-  Charger.find({location:{$near:{$geometry:{type:"Point",coordinates:req.body.location.coordinates},$maxDistance:5000}}}, function(err, res){
+  Charger.find({location:{$near:{$geometry:{type:"Point",coordinates:req.body.location.coordinates},$maxDistance:4713331000}}}, function(err, res){
     if(err){
       console.log("query error", err);
     }else {
